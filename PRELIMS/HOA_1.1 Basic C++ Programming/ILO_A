@@ -1,0 +1,42 @@
+
+#include<iostream>
+// Create a function that will take two numbers and display the sum.
+int sumoftwoNum(int fNum, int sNum);
+// Create a function that will return whether variable A is greater than variable B.
+void NumComparison(int Num1, int Num2);
+//Create a function that will take two Boolean values and display the result of all logical operations then return true if it was a success.
+bool LogicChecker(bool A, bool B);
+
+int main(){
+    std::cout<<"The sum of the two Numbers is: "<< sumoftwoNum(6,7) << std:: endl;
+    
+    NumComparison(7, 6);
+
+    bool A = true;
+    bool B = false;
+    std::cout<<LogicChecker(A,B);
+
+    return 0;
+}
+
+int sumoftwoNum(int fNum, int sNum){
+
+    int sum = fNum + sNum;
+    return sum;
+}
+
+void NumComparison(int Num1, int Num2){
+    if (Num1 > Num2){
+        std::cout<<"Variable A is greater than Variable B. \n";
+    }else {
+        std::cout<<"Variable A is NOT greater than Variable B. \n";
+    }
+}
+
+bool LogicChecker(bool A, bool B){
+    std::cout<<std::boolalpha;
+    std::cout<< "A && B  is  " << (A && B)<< "\n";
+    std::cout<< "A || B  is " << (A || B)<< "\n";
+    std::cout<< "!B  is " << (!B)<< "\n";
+    std::cout<< "!A  is " << (!A)<< "\n";
+}
