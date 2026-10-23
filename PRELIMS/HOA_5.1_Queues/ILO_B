@@ -1,0 +1,45 @@
+#include<iostream>
+#include "queueLL.h"
+
+
+int main(){
+    qNode<char>* front= nullptr;
+    qNode<char>* back = nullptr;   
+
+
+    enqueue('J',&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    enqueue('E',&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    enqueue('S',&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    enqueue('S',&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    enqueue('E',&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+
+    //display all
+    std::cout<<"testing the DisplayAll function \n";
+    displayall(&front,&back);
+    //isempty
+    std::cout<<"testing the isempty function \n";
+    isEmpty(&front, &back);
+
+    std::cout<<"testing the dequeue operator:  \n";
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    dequeue(&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    dequeue(&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    dequeue(&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    dequeue(&front, &back);
+    std::cout<<"front: "<<front->data<<" "<<"back: "<<back->data<<std::endl;
+    dequeue(&front, &back);
+    dequeue(&front, &back);
+
+    std::cout<<"testing the isempty function \n";
+    isEmpty(&front, &back);
+
+    return 0;
+}
