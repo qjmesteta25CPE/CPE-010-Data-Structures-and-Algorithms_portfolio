@@ -1,0 +1,39 @@
+#include<iostream>
+#include"StackArr.h"
+
+int main(){
+
+    StackArray<int> A(10);
+
+    int choice;
+    while(true){
+        std::cout<<"============================================"<<std::endl;
+        std::cout<<"stack Operations \n";
+        std::cout<<"1.PUSH, 2.POP 3. TOP 4. isEmpty 5.isFull 6.DisplayStack 7.DisplayArray 8. Compare Stacksequence to Array values "<<std::endl;
+        std::cout<<"============================================"<<std::endl;
+
+        std::cin>>choice;
+        switch(choice){
+            case 1: A.push();
+            break;
+            case 2: A.pop();
+            break;
+            case 3: A.Top();
+            break;
+            case 4: std::cout<<"is Stack empty? "<<A.isEmpty()<<std::endl;
+            break;
+            case 5: std::cout<<"is Stack Full? "<<A.isFull()<<std::endl;
+            break;
+            case 6: A.DisplayStack();
+            break;
+            case 7: A.DisplayArray();
+            break;
+            case 8: A.CompareValues();
+            break;
+            default: std::cout<<"Invalid choice"<<std::endl;
+            break;
+
+        }
+    }
+   
+}
