@@ -1,0 +1,16 @@
+#include<iostream>
+#include<thread>
+
+void print(int n, const std::string &str){
+    std::cout << "Printing integer: " << n << std::endl;
+    std::cout << "Printing string: " << str << std::endl;
+}
+
+int main(){
+    std::thread tl(print, 10, "T.I.P");
+    tl.join();
+    std::thread t2(print, 67, "Buto ni Gab");
+    t2.join();
+    
+return 0;
+}   
