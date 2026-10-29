@@ -1,0 +1,40 @@
+#include <iostream>
+#include "binaryTree.h"
+
+int main() {
+
+    // Creating the root node
+    BinaryTree<char>* root = new BinaryTree<char>('A');
+
+    // Creating children of root node A
+    root->insertLeftChild('B');
+    root->insertRightChild('C');
+
+    // Creating children of node B
+    root->getLeftChild()->insertLeftChild('D');
+    root->getLeftChild()->insertRightChild('F');
+
+    // Creating children of node C
+    root->getRightChild()->insertLeftChild('E');
+    root->getRightChild()->insertRightChild('G');
+
+    // Print the root node
+    std::cout << "Root: "<< root->getrootVal() << std::endl;
+
+    // Children of root node
+    std::cout << "Root Left Child: "<< root->getLeftChild()->getrootVal() << std::endl;
+    std::cout << "Root Right Child: "<< root->getRightChild()->getrootVal() << std::endl;
+
+    // Children of node B
+    std::cout << "B Left Child: "<< root->getLeftChild()->getLeftChild()->getrootVal()<< std::endl;
+    std::cout << "B Right Child: "<< root->getLeftChild()->getRightChild()->getrootVal()<< std::endl;
+
+    // Children of node C
+    std::cout << "C Left Child: "<< root->getRightChild()->getLeftChild()->getrootVal()<< std::endl;
+    std::cout << "C Right Child: "<< root->getRightChild()->getRightChild()->getrootVal()<< std::endl;
+    //check if a member is a leaf member
+    std::cout << "Is B a leaf? " << root->getLeftChild()->isLeaf() << std::endl;
+    std::cout << "Is D a leaf? " << root->getLeftChild()->getLeftChild()->isLeaf() << std::endl;
+
+    return 0;
+}
