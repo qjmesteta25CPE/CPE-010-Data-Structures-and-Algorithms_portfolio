@@ -1,0 +1,67 @@
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+#include <string>
+#include "Search.h"
+
+using namespace std;
+
+// Runs a function multiple times and returns the AVERAGE time in microseconds
+template<typename Func>
+double measureAverageTime(Func f, int iterations) {
+    auto start = chrono::steady_clock::now();
+    for (int i = 0; i < iterations; i++) {
+        f();
+    }
+    auto end = chrono::steady_clock::now();
+    return chrono::duration<double, micro>(end - start).count() / iterations;
+}
+
+int main() {
+    const int MAX_SIZE = 100000;
+    int a[MAX_SIZE];
+    
+    // Populate the sorted array
+    for (int i = 0; i < MAX_SIZE; i++) a[i] = i;
+
+    int sizes[] = {1000, 10000, 100000};
+    
+    // Run 10,000 times to get a measurable time block
+    const int ITERATIONS = 10000; 
+
+    cout << fixed << setprecision(4);
+    cout << left << setw(10) << "N" 
+         << setw(18) << "Binary_Avg (us)" 
+         << setw(18) << "Linear_Avg (us)" 
+         << "Found?\n";
+    cout << string(55, '-') << "\n";
+
+    for (int n : sizes) {
+        int key = n; // Worst case: key is greater than every value
+
+        // Use volatile to prevent the compiler from optimizing the loop away
+        volatile int dummyResult = 0; 
+
+        // Measure Binary Search
+        double binaryTime = measureAverageTime([&]() {
+            dummyResult = binarySearch(a, n, key);
+        }, ITERATIONS);
+
+        // Measure Linear Search
+        double linearTime = measureAverageTime([&]() {
+            dummyResult = linearSearch(a, n, key);
+        }, ITERATIONS);
+
+        // Run once just to verify correct logic behavior
+        int binaryResult = binarySearch(a, n, key);
+        int linearResult = linearSearch(a, n, key);
+        bool match = (binaryResult == linearResult);
+
+        cout << left << setw(10) << n 
+             << setw(18) << binaryTime 
+             << setw(18) << linearTime 
+             << (match ? "Yes" : "Error") << '\n';
+    }
+
+    return 0;
+}
